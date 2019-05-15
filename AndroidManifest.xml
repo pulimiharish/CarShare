@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.onetouch.carshare"
-    android:versionCode="1"
-    android:versionName="1.0" >
+<activity android:name="com.hsbc.mobilebanking.app2app.deeplinking.DeepLinkingNavigationActivity">
+    <intent-filter android:label="HSBC CMA App2App">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        <data
+            android:scheme="@string/deep_linking_scheme_https"
+            android:host="@string/deep_linking_host"
+            android:pathPrefix="/open-banking/authorize/" />
+Not sure if we need this end point /open-banking/authorize without version number?
+        <data
+            android:scheme="@string/deep_linking_scheme_https"
+            android:host="@string/deep_linking_host_prod"
+            android:pathPrefix="/open-banking/v*.*/authorize" />
+    </intent-filter>
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.onetouch.carshare.FullscreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <intent-filter android:autoVerify="true"
+                   tools:targetApi="M">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-
-</manifest>
+        <data
+            android:scheme="@string/deep_linking_scheme_https"
+            android:host="@string/deep_linking_host_prod"
+            android:pathPrefix="/open-banking/v*.*/authorize" />
+    </intent-filter>
+</activity>
